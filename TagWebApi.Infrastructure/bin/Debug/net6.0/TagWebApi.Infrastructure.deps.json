@@ -265,6 +265,9 @@
         }
       },
       "TagWebApi.Domain/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.5"
+        },
         "runtime": {
           "TagWebApi.Domain.dll": {}
         }

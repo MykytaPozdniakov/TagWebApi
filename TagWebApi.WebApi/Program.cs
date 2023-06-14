@@ -2,7 +2,10 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using TagWebApi.Domain;
 using static ProjectRepository;
 
 internal class Program
@@ -42,6 +45,9 @@ internal class Program
     {
         // Configure AppSettings
         services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
+
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
         // Configure JWT authentication
         var appSettings = configuration.GetSection("AppSettings").Get<AppSettings>();

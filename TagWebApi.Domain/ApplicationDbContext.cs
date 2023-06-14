@@ -25,5 +25,7 @@ namespace TagWebApi.Domain
         public DbSet<Project> Projects { get; set; }
         public DbSet<MainTask> Tasks { get; set; }
         public DbSet<Dispute> Disputes { get; set; }
+
+        public DbSet<ProjectLabel> ProjectLabels { get; set; }
     }
 }

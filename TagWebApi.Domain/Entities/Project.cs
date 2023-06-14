@@ -4,15 +4,29 @@ public class Project
 {
     public int Id { get; set; }
     public string Name { get; set; }
+
     public string Description { get; set; }
 
     public AITaskType AITaskType { get; set; }
+
+    public virtual ICollection<ProjectLabel> ProjectLabels { get; set; }
 
     // Navigation properties
     public virtual ICollection<ProjectAssignment> Assignments { get; set; }
     public virtual ICollection<MainTask> Tasks { get; set; }
 }
 
+
+public class ProjectLabel
+{
+    public int Id { get; set; }
+
+    public int ProjectId { get; set; }
+
+    public string Name { get; set; }
+
+    public virtual Project Project { get; set; }
+}
 
 public enum AITaskType
 {

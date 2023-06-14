@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Options;
 
 public partial class AuthService : IAuthService
 {
     private readonly IUserRepository _userRepository;
-    private readonly AppSettings _appSettings;
-    public AuthService(IUserRepository userRepository, AppSettings appSettings)
+    private readonly IOptions<AppSettings> _appSettings;
+    public AuthService(IUserRepository userRepository, IOptions<AppSettings> appSettings)
     {
         _userRepository = userRepository;
         _appSettings = appSettings;
@@ -55,7 +56,7 @@ public partial class AuthService : IAuthService
 
         // Generate JWT
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_appSettings.Token);
+        var key = Encoding.ASCII.GetBytes(_appSettings.Value.Token);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new Claim[]
