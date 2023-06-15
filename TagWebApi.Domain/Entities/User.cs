@@ -21,7 +21,9 @@ public class User
     public virtual ICollection<ProjectAssignment> ProjectAssignments { get; set; }
     public virtual ICollection<TaskAssignment> TaskAssignments { get; set; }
 
-    public virtual ICollection<DisputeRoot> Disputes { get; set; }
+    public virtual ICollection<DisputeRoot> DisputeRoots { get; set; }
+
+    public virtual ICollection<DisputeElement> DisputeElements { get; set; }
 
 }
 

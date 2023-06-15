@@ -32,87 +32,68 @@ namespace TagWebApi.Domain
             modelBuilder.Entity<MainTask>()
                 .HasMany(mt => mt.TaskActivities)
                 .WithOne(ta => ta.Task)
-                .HasForeignKey(ta => ta.TaskId);
+                .HasForeignKey(ta => ta.TaskId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<TaskActivity>()
                 .HasMany(ta => ta.Assignments)
                 .WithOne(ta => ta.TaskActivity)
-                .HasForeignKey(ta => ta.TaskActivityId);
-
-            modelBuilder.Entity<TaskActivity>()
-                .HasOne(ta => ta.Task)
-                .WithMany(mt => mt.TaskActivities)
-                .HasForeignKey(ta => ta.TaskId);
+                .HasForeignKey(ta => ta.TaskActivityId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<User>()
                 .HasMany(u => u.UserCommunicationChannels)
                 .WithOne(uc => uc.User)
-                .HasForeignKey(uc => uc.UserId);
+                .HasForeignKey(uc => uc.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<User>()
                 .HasMany(u => u.ProjectAssignments)
                 .WithOne(pa => pa.User)
-                .HasForeignKey(pa => pa.UserId);
+                .HasForeignKey(pa => pa.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<User>()
                 .HasMany(u => u.TaskAssignments)
                 .WithOne(ta => ta.User)
-                .HasForeignKey(ta => ta.UserId);
+                .HasForeignKey(ta => ta.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<User>()
-                .HasMany(u => u.Disputes)
+                .HasMany(u => u.DisputeElements)
                 .WithOne(d => d.User)
-                .HasForeignKey(d => d.UserId);
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<UserCommunicationChannel>()
-                .HasOne(uc => uc.User)
-                .WithMany(u => u.UserCommunicationChannels)
-                .HasForeignKey(uc => uc.UserId);
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.DisputeRoots)
+                .WithOne(d => d.User)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<UserRole>()
                 .HasMany(ur => ur.Users)
                 .WithOne(u => u.UserRole)
-                .HasForeignKey(u => u.UserRoleId);
+                .HasForeignKey(u => u.UserRoleId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Project>()
                 .HasMany(p => p.ProjectLabels)
                 .WithOne(pl => pl.Project)
-                .HasForeignKey(pl => pl.ProjectId);
+                .HasForeignKey(pl => pl.ProjectId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Project>()
                 .HasMany(p => p.Assignments)
                 .WithOne(pa => pa.Project)
-                .HasForeignKey(pa => pa.ProjectId);
+                .HasForeignKey(pa => pa.ProjectId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Project>()
                 .HasMany(p => p.Tasks)
                 .WithOne(t => t.Project)
-                .HasForeignKey(t => t.ProjectId);
-
-            modelBuilder.Entity<ProjectLabel>()
-                .HasOne(pl => pl.Project)
-                .WithMany(p => p.ProjectLabels)
-                .HasForeignKey(pl => pl.ProjectId);
-
-            modelBuilder.Entity<DisputeRoot>()
-                .HasMany(d => d.DisputeElements)
-                .WithOne(e => e.Parent)
-                .HasForeignKey(e => e.RootId);
-
-            modelBuilder.Entity<DisputeRoot>()
-                .HasOne(d => d.User)
-                .WithMany()
-                .HasForeignKey(d => d.UserId);
-
-            modelBuilder.Entity<DisputeRoot>()
-                .HasOne(d => d.Activity)
-                .WithMany()
-                .HasForeignKey(d => d.ActivityId);
-
-            modelBuilder.Entity<DisputeElement>()
-                .HasOne(e => e.User)
-                .WithMany()
-                .HasForeignKey(e => e.UserId);
+                .HasForeignKey(t => t.ProjectId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

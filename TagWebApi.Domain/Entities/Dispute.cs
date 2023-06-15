@@ -22,7 +22,7 @@ public class DisputeElement
 {
     public int Id { get; set; }   
 
-    public int RootId { get; set; }
+    public int DisputeRootId { get; set; }
 
     public int UserId { get; set; }    
 
@@ -31,7 +31,7 @@ public class DisputeElement
     public DateTime DateTime { get; set; }
 
     // Navigation properties
-    public DisputeRoot Parent { get; set; }
+    public DisputeRoot DisputeRoot { get; set; }
     public User User { get; set; }
 }
 
