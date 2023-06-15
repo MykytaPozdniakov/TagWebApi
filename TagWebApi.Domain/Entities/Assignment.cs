@@ -18,11 +18,11 @@ public class TaskAssignment
     public int Id { get; set; }
     public int UserId { get; set; }
 
-    public int TaskId { get; set; }
+    public int TaskActivityId { get; set; }
 
     // Navigation properties
     public virtual User User { get; set; }
-    public virtual MainTask Task { get; set; }
+    public TaskActivity TaskActivity { get; internal set; }
 }
 
 public enum AssignmentRoleType

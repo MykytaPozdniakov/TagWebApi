@@ -7,11 +7,10 @@ public class Project
 
     public string Description { get; set; }
 
-    public AITaskType AITaskType { get; set; }
-
-    public virtual ICollection<ProjectLabel> ProjectLabels { get; set; }
+    public AITaskType AITaskType { get; set; }    
 
     // Navigation properties
+    public virtual ICollection<ProjectLabel> ProjectLabels { get; set; }
     public virtual ICollection<ProjectAssignment> Assignments { get; set; }
     public virtual ICollection<MainTask> Tasks { get; set; }
 }

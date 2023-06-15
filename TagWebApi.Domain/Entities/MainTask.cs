@@ -36,4 +36,5 @@ public class TaskActivity
     // Navigation properties
     public virtual Project Project { get; set; }
     public virtual ICollection<TaskAssignment> Assignments { get; set; }
+    public MainTask Task { get; internal set; }
 }

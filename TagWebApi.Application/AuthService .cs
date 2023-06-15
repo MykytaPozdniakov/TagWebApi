@@ -17,6 +17,12 @@ public partial class AuthService : IAuthService
         _appSettings = appSettings;
     }
 
+    public async Task<bool> UserExists(string email)
+    {
+        var user = await _userRepository.GetUserByEmail(email);
+        return user != null;
+    }
+
     public async Task<User> Register(string email, string password)
     {
         // TODO: Add validation and error handling
