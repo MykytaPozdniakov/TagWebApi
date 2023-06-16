@@ -12,7 +12,7 @@ using TagWebApi.Domain;
 namespace TagWebApi.Domain.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230615192300_InitialCreate")]
+    [Migration("20230615201043_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
